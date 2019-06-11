@@ -50,3 +50,7 @@ However, one thing to keep in mind is that the key used for the k/v pair for the
 Kafka message is based on a 64-bit integer. Once the message with the key is sent
 then the key cannot be used again.  This can be resolved by deleting the topic
 used by KafkaExample (called `test`), or an alternate key strategy can be used.
+
+## License
+
+This project is licensed under the [Apache 2 license](https://www.apache.org/licenses/LICENSE-2.0)
