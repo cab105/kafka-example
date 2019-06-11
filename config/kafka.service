@@ -1,0 +1,17 @@
+[Unit]
+Description=Apache Kafka
+Requires=network.target
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/vagrant/kafka_2.12-2.2.0/bin
+ExecStart=/home/vagrant/kafka_2.12-2.2.0/bin/kafka-server-start.sh /home/vagrant/kafka_2.12-2.2.0/config/kafka.properties
+ExecStop=/home/vagrant/kafka_2.12-2.2.0/bin/kafka-server-stop.sh
+Restart=on-failure
+User=vagrant
+Group=vagrant
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
