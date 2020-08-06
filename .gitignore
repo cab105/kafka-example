@@ -2,3 +2,4 @@
 tmp/**
 kafkaexample/target/**
 kafkaexample/dependency-reduced-pom.xml
+*.log

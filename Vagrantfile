@@ -15,7 +15,7 @@ Vagrant.configure("2") do |config|
         chown -R vagrant:vagrant /home/vagrant/zookeeper-data
       fi
 
-      cp /vagrant/config/node1-kafka.properties /home/vagrant/kafka_2.12-2.2.0/config/kafka.properties
+      cp /vagrant/config/node1-kafka.properties /home/vagrant/kafka_2.12-2.5.0/config/kafka.properties
       systemctl start zookeeper.service
       systemctl start kafka.service
     SHELL
@@ -33,7 +33,7 @@ Vagrant.configure("2") do |config|
         chown -R vagrant:vagrant /home/vagrant/zookeeper-data
       fi
 
-      cp /vagrant/config/node2-kafka.properties /home/vagrant/kafka_2.12-2.2.0/config/kafka.properties
+      cp /vagrant/config/node2-kafka.properties /home/vagrant/kafka_2.12-2.5.0/config/kafka.properties
       systemctl start zookeeper.service
       systemctl start kafka.service
     SHELL
@@ -51,7 +51,7 @@ Vagrant.configure("2") do |config|
         chown -R vagrant:vagrant /home/vagrant/zookeeper-data
       fi
 
-      cp /vagrant/config/node3-kafka.properties /home/vagrant/kafka_2.12-2.2.0/config/kafka.properties
+      cp /vagrant/config/node3-kafka.properties /home/vagrant/kafka_2.12-2.5.0/config/kafka.properties
       systemctl start zookeeper.service
       systemctl start kafka.service
     SHELL
@@ -68,20 +68,21 @@ Vagrant.configure("2") do |config|
 
     if [ ! -d /vagrant/tmp ]; then
       mkdir /vagrant/tmp
-      cd /vagrant/tmp
-      if [ ! -f /vagrant/tmp/kafka_2.12-2.2.0.tgz ]; then
-        wget http://apache.cs.utah.edu/kafka/2.2.0/kafka_2.12-2.2.0.tgz
-      fi
+    fi
 
-      if [ ! -f /vagrant/tmp/zookeeper-3.4.14.tar.gz ]; then
-        wget http://apache.cs.utah.edu/zookeeper/zookeeper-3.4.14/zookeeper-3.4.14.tar.gz
-      fi
+    cd /vagrant/tmp
+    if [ ! -f /vagrant/tmp/kafka_2.12-2.5.0.tgz ]; then
+      wget http://apache.cs.utah.edu/kafka/2.5.0/kafka_2.12-2.5.0.tgz
+    fi
+
+    if [ ! -f /vagrant/tmp/zookeeper-3.4.14.tar.gz ]; then
+      wget http://apache.cs.utah.edu/zookeeper/zookeeper-3.4.14/zookeeper-3.4.14.tar.gz
     fi
 
     cd /home/vagrant
-    if [ ! -d /home/vagrant/kafka_2.12-2.2.0 ]; then
-      tar -xzvf /vagrant/tmp/kafka_2.12-2.2.0.tgz
-      chown -R vagrant:vagrant /home/vagrant/kafka_2.12-2.2.0
+    if [ ! -d /home/vagrant/kafka_2.12-2.5.0 ]; then
+      tar -xzvf /vagrant/tmp/kafka_2.12-2.5.0.tgz
+      chown -R vagrant:vagrant /home/vagrant/kafka_2.12-2.5.0
     fi
 
     if [ ! -d /home/vagrant/zookeeper-3.4.14 ]; then
@@ -97,7 +98,7 @@ Vagrant.configure("2") do |config|
     systemctl daemon-reload
   SHELL
 
-  config.vm.provider "vmware_workstation" do |vm|
+  config.vm.provider "vmware_desktop" do |vm|
     vm.vmx["memsize"] = "2048"
     vm.vmx["numvcpus"] = "2"
   end
